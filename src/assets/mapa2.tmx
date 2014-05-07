@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="20" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="platformer_tiles" tilewidth="16" tileheight="16">
+  <image source="../../../phaser-examples/examples/assets/tilemaps/tiles/platformer_tiles.png" width="304" height="96"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt00sKgzAURuF00qnzthsoLkE01frairr/uXegkohkFi+t54ODEBz8GDQGAAAAAAD8iof2AHie2gPgWe/jI5VSpTfl7w3SKE2Bd9b7+Eq11MQehc1tKXHOXsuzlTqpP3vUhaUH3Z1wnrfxv/1RiCf0H3AfOopd1il3sloDLybbZQMhrhmL/Quv
+  </data>
+ </layer>
+</map>

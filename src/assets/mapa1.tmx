@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="30" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="ground_1x1" tilewidth="32" tileheight="32">
+  <image source="ground_1x1.png" width="800" height="32"/>
+ </tileset>
+ <tileset firstgid="26" name="platformer_tiles" tilewidth="32" tileheight="32">
+  <image source="../../../phaser-examples/examples/assets/tilemaps/tiles/platformer_tiles.png" width="304" height="96"/>
+ </tileset>
+ <tileset firstgid="53" name="platformer_tiles" tilewidth="16" tileheight="16">
+  <image source="../../../phaser-examples/examples/assets/tilemaps/tiles/platformer_tiles.png" width="304" height="96"/>
+ </tileset>
+ <tileset firstgid="167" name="platformer_tiles" tilewidth="16" tileheight="16">
+  <image source="../../../phaser-examples/examples/assets/tilemaps/tiles/platformer_tiles.png" width="304" height="96"/>
+ </tileset>
+ <layer name="layer1" width="100" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt2sEKg0AMBND1IP7/H0tRUQsuyZqQSZwHuZXWZNzUQpfW2mJchMU6X48iHMwFy7QXc8HCXGSOOUV87jWbiGtANnXKm+SZgHmdonKSXAedIs8U6TAbXDw72JgPtmrfQ9X6OfT6ytqfpKcKfVpDm8Vojm+KsDAjorss5+Br+7diXxV7+qn4zIB8bbTJcB/R5s25Z8Y5ZNvxHmZFoaj0+390xoi5aKH8P89yltkz+dfLQbM7enPx3jOa9356jdfOGSnLMxK556X3zOhMomsF3iEF+w==
+  </data>
+ </layer>
+</map>
