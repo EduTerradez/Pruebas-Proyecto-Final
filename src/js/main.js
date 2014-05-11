@@ -10,6 +10,7 @@ window.onload = function () {
   game.state.add('Islands', ns.Islands);
   game.state.add('game', ns.Game);
   game.state.add('menu', ns.Menu);
+  game.state.add('fuego', ns.Fuego);
 
   game.state.start('boot');
 };
