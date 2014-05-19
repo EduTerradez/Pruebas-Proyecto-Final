@@ -16,8 +16,9 @@
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       this.game.physics.arcade.gravity.y = 300;
       // Map
-      this.map = this.add.tilemap('map');
-      this.map.addTilesetImage('ground_1x1');      
+      this.map = this.add.tilemap('map2');
+      this.map.addTilesetImage('mariotiles');
+      this.map.addTilesetImage('platformertiles');      
       this.layer = this.map.createLayer('layer1');
       this.layer.resizeWorld();
       this.map.setCollisionBetween(1, 12);

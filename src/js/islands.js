@@ -101,6 +101,7 @@ render: function() {
   this.game.debug.body(this.island2);
   this.game.debug.bodyInfo(this.player, 16, 24);
   this.game.debug.bodyInfo(this.island2, 16, 124);
+  this.game.debug.bodyInfo(this.island1, 16, 124);
 
 },
 
