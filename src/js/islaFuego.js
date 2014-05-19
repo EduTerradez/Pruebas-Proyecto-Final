@@ -13,7 +13,15 @@
     this.SHOT_DELAY = 1000; 
     this.BULLET_SPEED = 1100; 
     this.NUMBER_OF_BULLETS = 20;
-    this.GRAVITY = 980; 
+    this.GRAVITY = 980;
+
+    
+    this.wave1active = true;
+    this.wave2 = false;
+    this.wave3 = false;
+    this.wave4 = false; 
+    this.wave5 = false;
+    this.wave6 = false;  
     //Elementos
     this.gun = this.game.add.sprite(340, 685, 'cannon');
     this.gun.anchor.setTo(0.5, 0.5);
@@ -51,7 +59,9 @@
 
 
     this.explosionGroup = this.game.add.group();
-    this.momiaGroup = this.game.add.group();
+    this.loboGroup = this.game.add.group();
+    this.osoGroup = this.game.add.group();
+    this.cuervoGroup = this.game.add.group();
 
     
     this.game.input.activePointer.x = this.game.width/2;
@@ -62,59 +72,92 @@
 
     update: function () {
 
-    this.game.physics.arcade.collide(this.bulletPool, this.ground, function(bullet, ground) {
+        this.game.physics.arcade.collide(this.bulletPool, this.ground, function(bullet, ground) {
+            
+            this.getExplosion(bullet.x, bullet.y);
+
+            this.loboGroup.forEachAlive(function(lobo){
+                if(Math.abs(lobo.body.x - bullet.x) <= 64){
+                    lobo.kill();
+                }
+            },this);
+
+            bullet.kill();
+        }, null, this);
+
+
+        this.game.physics.arcade.collide(this.bulletPool, this.wall);
+        this.game.physics.arcade.collide(this.bulletPool, this.bulletPool);
+        this.game.physics.arcade.collide(this.ground, this.wall);
+        this.game.physics.arcade.collide(this.ground, this.loboGroup);
+        this.game.physics.arcade.collide(this.ground, this.cuervoGroup);
+        this.game.physics.arcade.collide(this.ground, this.osoGroup);
         
-        this.getExplosion(bullet.x, bullet.y);
+        
+        this.bulletPool.forEachAlive(function(bullet) {
+            bullet.rotation = Math.atan2(bullet.body.velocity.y, bullet.body.velocity.x);
+        }, this);
 
-        this.momiaGroup.forEachAlive(function(momia){
-            if(Math.abs(momia.body.x - bullet.x) <= 64){
-                momia.kill();
+        this.gun.rotation = this.game.physics.arcade.angleToPointer(this.gun);
 
-            }
-        },this);
-
-        bullet.kill();
-    }, null, this);
-
-
-    this.game.physics.arcade.collide(this.bulletPool, this.wall);
-    this.game.physics.arcade.collide(this.bulletPool, this.bulletPool);
-    this.game.physics.arcade.collide(this.ground, this.wall);
-    this.game.physics.arcade.collide(this.ground, this.momiaGroup);
-    
-    
-    this.bulletPool.forEachAlive(function(bullet) {
-        bullet.rotation = Math.atan2(bullet.body.velocity.y, bullet.body.velocity.x);
-    }, this);
-
-    this.gun.rotation = this.game.physics.arcade.angleToPointer(this.gun);
-
-    if (this.game.input.activePointer.isDown) {
-        this.shootBullet();
-    }
-      if(this.p){  
-        var momia = this.game.add.sprite(700 , 100, 'momia');
-        this.game.physics.enable(momia, Phaser.Physics.ARCADE);
-        momia.body.velocity.x = -50;
-        this.momiaGroup.add(momia);  
+        if (this.game.input.activePointer.isDown) {
+            this.shootBullet();
         }
-        this.p = false;
-        //this.momiaGroup.forEach(function(momia){momia.animations.play('move');})
+
+
+
+        if(this.wave1active){
+            this.wave1a();
+        }
+        //this.game.time.events.add(Phaser.Timer.SECOND * 4, this.wave1, this);
+
+        /*if(this.p){   var lobo = this.game.add.sprite(900 , 700, 'lobo');
+        this.game.physics.enable(lobo, Phaser.Physics.ARCADE);
+        lobo.body.velocity.x = -50; var animation = lobo.animations.add('move',[0,1,2,3] ,6, true); lobo.animations.play('move');this.loboGroup.add(lobo);
+        } 
+        this.p = false;*/
+        //this.momiaGroup.forEach(function(lobo){lobo.animations.play('move');})
+        //Math.floor((Math.random() * 10) + 1);
+        //game.time.events.add(Phaser.Timer.SECOND * 4, fadePicture, this);
     },
 
-    wave1: function(){
-        var momia = this.game.add.sprite(1500 , 600, 'momia');
-              this.game.physics.enable(momia, Phaser.Physics.ARCADE);
-              momia.body.velocity.x = -50;
-              //var animation = momia.animations.add('move', [0,1,2,3, 60, false);
-              //momia.animations.play('move');
-              this.momiaGroup.add(momia);
-              
+    wave1a: function(){
+        console.log("Hola");
+        //this.addLobos(5);
+        this.addOsos(6);
+        this.wave1active = false;
 
     },
 
+    addLobos: function(number){
+        for(var i = 0;i < number;i++){
+              var lobo = this.game.add.sprite(1500 , 600, 'lobo');
+              this.game.physics.enable(lobo, Phaser.Physics.ARCADE);
+              lobo.body.velocity.x = -(Math.floor((Math.random() * 100) + 50));
+              var animation = lobo.animations.add('move', [0,1,2,3,4] ,6, true);
+              lobo.animations.play('move');
+              this.loboGroup.add(lobo);
+
+        }
+        console.log("lobo");
+
+    },
+     addOsos: function(number){
+        for(var i = 0;i < number;i++){
+              var oso = this.game.add.sprite(1500 , 600, 'oso');
+              this.game.physics.enable(oso, Phaser.Physics.ARCADE);
+              oso.body.velocity.x = -(Math.floor((Math.random() * 100) + 50));
+              var animation = oso.animations.add('move', [0,1,2,3] ,6, true);
+              oso.animations.play('move');
+              this.osoGroup.add(oso);
+
+        }
+        console.log("lobo");
+
+    }
     
   };
+
  Fuego.prototype.shootBullet = function() {
     if (this.lastBulletShotAt === undefined) this.lastBulletShotAt = 0;
     if (this.game.time.now - this.lastBulletShotAt < this.SHOT_DELAY) return;

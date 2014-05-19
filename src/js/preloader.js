@@ -20,8 +20,9 @@
       this.load.spritesheet('ship', 'assets/barco.png', 99, 75);
       this.load.spritesheet('personaje', 'assets/personaje.png', 30, 65);
       this.load.spritesheet('explosion', 'assets/boom.png', 128, 128);
-      this.load.spritesheet('momia', 'assets/lobo.png', 88.88, 90);
-      this.load.spritesheet('zombie', 'assets/monstruos.png', 128, 128);
+      this.load.spritesheet('lobo', 'assets/lobo.png', 70, 70);
+      this.load.spritesheet('oso', 'assets/oso.png', 61.6, 100);
+      this.load.spritesheet('cuervo', 'assets/cuervo.png', 59.5, 60);
       this.load.image('fuego', 'assets/islaFuego1.png');
       this.load.image('hielo', 'assets/islaHielo.png');
       this.load.image('tierra', 'assets/islaTierra1.png');
