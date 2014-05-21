@@ -16,13 +16,20 @@
       this.load.setPreloadSprite(this.asset);
       this.load.image('player', 'assets/cabezon.png');
       
-      this.load.image('sea', 'assets/sea.jpg');
+      this.load.image('sea', 'assets/cuarteado.png');
       this.load.spritesheet('ship', 'assets/barco.png', 99, 75);
       this.load.spritesheet('personaje', 'assets/personaje.png', 30, 65);
       this.load.spritesheet('explosion', 'assets/boom.png', 128, 128);
-      this.load.spritesheet('lobo', 'assets/lobo.png', 70, 70);
+      this.load.spritesheet('lobo', 'assets/lobo2.png', 80.6, 70);
       this.load.spritesheet('oso', 'assets/oso.png', 61.6, 100);
       this.load.spritesheet('cuervo', 'assets/cuervo.png', 59.5, 60);
+      this.load.spritesheet('dragon', 'assets/dragon.png', 135, 150);
+      this.load.spritesheet('vida', 'assets/vidas.png', 221, 158);
+
+      this.load.image('dcannon', 'assets/dialogo_cannon.png');
+
+      this.load.image('rec1', 'assets/rec1.png');
+      this.load.image('rec2', 'assets/rec2.png');
       this.load.image('fuego', 'assets/islaFuego1.png');
       this.load.image('hielo', 'assets/islaHielo.png');
       this.load.image('tierra', 'assets/islaTierra1.png');
