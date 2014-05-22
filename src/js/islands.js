@@ -19,7 +19,7 @@
     	
     	this.background = this.game.add.tileSprite(0, 0, 1920, 1200, 'sea');
     	
-      this.player = this.game.add.sprite(900, 500, 'ship');
+      this.player = this.game.add.sprite(200, 750, 'ship');
       this.player.animations.add('left', [0], 10, true);
       this.player.animations.add('right', [1], 10, true);
       
@@ -32,13 +32,40 @@
       this.player.body.drag.setTo(this.DRAG, 200);
     	
     	this.scale = 1;
-    	
-      
+    	this.counter = 3;
 
+
+      if(!window.pruebitaswey.Global.started){
+      this.dragon = this.game.add.sprite(500, 0, 'dragon2');
+      this.dialogo = this.game.add.sprite(300, 300, 'd1');
+      //this.game.physics.enable( [this.dragon,this.dialogo], Phaser.Physics.ARCADE);
+      }
     },
 
     update: function () {
-      
+       if(!window.pruebitaswey.Global.started){
+        //this.dialogo = this.game.add.sprite(300, 300, 'd1');
+
+       if (this.game.input.keyboard.isDown(Phaser.Keyboard.ENTER)) {
+          this.counter -= 1;
+        }
+
+        if(this.counter === 2){
+         this.dialogo.kill();
+         this.dialogo = this.game.add.sprite(300, 300, 'd2');
+        }
+        else if(this.counter === 1){
+          this.dialogo.kill()
+          this.dialogo = this.game.add.sprite(300, 300, 'd3');
+        }
+        else if(this.counter === 0){
+          this.dragon.kill();
+          this.dialogo.kill();
+          window.pruebitaswey.Global.started = true;
+        }
+        
+      }
+     
       if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
             if(this.player.x >= 0){
     		      this.player.body.velocity.x = -100;
@@ -85,15 +112,7 @@
         },
         null, this);
 
-      /*this.physics.arcade.overlap(this.player, this.island2, function (player, coin) {
-            coin.kill();
-            console.log("caca")
-        }, null, this);*/
-
-      /*this.physics.arcade.collide(this.player, this.island2, function (player, coin) {
-            coin.kill();
-            console.log("caca")
-        }, null, this);*/
+      
     },
 
 

@@ -24,10 +24,27 @@
       this.load.spritesheet('oso', 'assets/oso.png', 61.6, 100);
       this.load.spritesheet('cuervo', 'assets/cuervo.png', 59.5, 60);
       this.load.spritesheet('dragon', 'assets/dragon.png', 135, 150);
+      this.load.spritesheet('dragon2', 'assets/dragon2.png', 643, 632);
       this.load.spritesheet('vida', 'assets/vidas.png', 221, 158);
 
       this.load.image('dcannon', 'assets/dialogo_cannon.png');
+      this.load.image('d1', 'assets/dialogos1.png')
+      this.load.image('d2', 'assets/dialogos2.png')
+      this.load.image('d3', 'assets/dialogos3.png')
 
+      this.load.spritesheet('personajeTierra', 'assets/personajeTierra.png', 53, 99);
+      this.load.image('dTierra', 'assets/dialogoTierra.png');
+      this.load.tilemap('Final', 'assets/tiledFinal.json', null, Phaser.Tilemap.TILED_JSON);
+      this.load.tilemap('Tierra', 'assets/tiledTierra.json', null, Phaser.Tilemap.TILED_JSON);
+      this.load.image('tierraTiles', 'assets/plataformasTierra.png');
+      this.load.image('finalTiles', 'assets/plataformasFinal.png');
+
+      this.load.image('background', 'assets/PORTADA.png');
+      this.load.image('background2', 'assets/fondo_marino.png');
+      this.load.image('pcreditos', 'assets/paginaCreditos.png');
+      this.load.image('jugar', 'assets/botonJugar.png');
+      this.load.image('creditos', 'assets/botonCreditos.png');
+      this.load.image('volver', 'assets/botonVolver.png');
       this.load.image('rec1', 'assets/rec1.png');
       this.load.image('rec2', 'assets/rec2.png');
       this.load.image('fuego', 'assets/islaFuego1.png');
@@ -42,8 +59,8 @@
       this.load.image('bullet', 'assets/fireball.png');
       this.load.image('castle', 'assets/castillo.png');
       this.load.bitmapFont('minecraftia', 'assets/minecraftia.png', 'assets/minecraftia.xml');
-      this.load.tilemap('map', 'assets/mapa1.json', null, Phaser.Tilemap.TILED_JSON);
-      this.load.tilemap('map2', 'assets/tiledTierra.json', null, Phaser.Tilemap.TILED_JSON);
+   
+      
       this.load.image('ground_1x1', 'assets/ground_1x1.png');
       this.load.image('mariotiles', 'assets/super_mario.png');
       this.load.image('platformertiles', 'assets/platformer_tiles.png');
@@ -87,7 +104,7 @@
 
     update: function () {
       if (!!this.ready) {
-        this.game.state.start('fuego');
+        this.game.state.start('menu');
       }
     },
 

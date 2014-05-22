@@ -12,104 +12,168 @@
   Game.prototype = {
 
     create: function () {
+
       // Physics subsystem
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       this.game.physics.arcade.gravity.y = 300;
       // Map
-      this.map = this.add.tilemap('map2');
-      this.map.addTilesetImage('mariotiles');
-      this.map.addTilesetImage('platformertiles');      
-      this.layer = this.map.createLayer('layer1');
+      this.map = this.add.tilemap('Tierra');
+      this.map.addTilesetImage('tierraTiles');    
+      this.layer = this.map.createLayer('Capa de Patrones 1');
       this.layer.resizeWorld();
       this.map.setCollisionBetween(1, 12);
       // Player
-      this.player = this.game.add.sprite(200, 200, 'personaje');
+      this.player = this.game.add.sprite(200, 200, 'personajeTierra');
       this.game.physics.enable(this.player, Phaser.Physics.ARCADE);
       this.player.body.bounce.y = 0.2;
       this.player.body.collideWorldBounds = true;
+      // Enemigos
+      this.bear1 = this.game.add.sprite(2000, 200, 'oso');
+      this.game.physics.enable(this.bear1, Phaser.Physics.ARCADE);
+      this.bear1.body.bounce.y = 0;
+      this.bear1.body.collideWorldBounds = true;
+      this.bear1.body.velocity.x = -160;
+
+      this.bear2 = this.game.add.sprite(2000, 200, 'oso');
+      this.game.physics.enable(this.bear2, Phaser.Physics.ARCADE);
+      this.bear2.body.bounce.y = 0;
+      this.bear2.body.collideWorldBounds = true;
+      this.bear2.body.velocity.x = 160;
+
+      this.bear3 = this.game.add.sprite(5000, 200, 'oso');
+      this.game.physics.enable(this.bear3, Phaser.Physics.ARCADE);
+      this.bear3.body.bounce.y = 0;
+      this.bear3.body.collideWorldBounds = true;
+      this.bear3.body.velocity.x = -160;
+
+      this.lobo1 = this.game.add.sprite(2000, 200, 'lobo');
+      this.game.physics.enable(this.lobo1, Phaser.Physics.ARCADE);
+      this.lobo1.body.bounce.y = 0;
+      this.lobo1.body.collideWorldBounds = true;
+      this.lobo1.body.velocity.x = -200;
+
+      this.lobo2 = this.game.add.sprite(2000, 200, 'lobo');
+      this.game.physics.enable(this.lobo2, Phaser.Physics.ARCADE);
+      this.lobo2.body.bounce.y = 0;
+      this.lobo2.body.collideWorldBounds = true;
+      this.lobo2.body.velocity.x = 200;
+
+      this.lobo3 = this.game.add.sprite(5000, 200, 'lobo');
+      this.game.physics.enable(this.lobo3, Phaser.Physics.ARCADE);
+      this.lobo3.body.bounce.y = 0;
+      this.lobo3.body.collideWorldBounds = true;
+      this.lobo3.body.velocity.x = -200;
+      // Colisiones Player-Mapa
+          // 648 es el numero total de imagenes que componen en png para el tiled
+      for (var i = 0; i < 684; i++) {
+        this.map.setCollision(i);
+      }
       // Camera
       this.game.camera.follow(this.player);
       // Input setup
       this.cursors = this.game.input.keyboard.createCursorKeys();
      
       this.jumpButton = this.game.input.keyboard.addKey(Phaser.Keyboard.UP);
+
+      // Dragón y dialogo (aparecen)
+      this.dialogo = this.game.add.sprite(600, 100, 'dTierra');
+      this.dragon = this.game.add.sprite(1000, 100, 'dragon');
+      this.game.physics.enable(this.dragon, Phaser.Physics.ARCADE);
+      this.dragon.body.allowGravity = false;
+      var animation = this.dragon.animations.add('move', [0,1,2] ,10, true);
+      this.dragon.animations.play('move');
+
+      // Animación para el movimiento del personaje
+      var animationLeft = this.player.animations.add('left', [ 6, 7, 8, 9, 10, 11 ], 8, false);
+      var animationRight = this.player.animations.add('right', [ 0, 1, 2, 3, 4, 5 ], 8, false);
+
+      // Animacion enemigos
+      this.bear1.animations.add('move', [0,1,2,3] ,6, true);
+      this.bear2.animations.add('move', [0,1,2,3] ,6, true);
+      this.bear3.animations.add('move', [0,1,2,3] ,6, true);
+
+      this.lobo1.animations.add('move', [0,1,2,3,4] ,8, true);
+      this.lobo2.animations.add('move', [0,1,2,3,4] ,8, true);
+      this.lobo3.animations.add('move', [0,1,2,3,4] ,8, true);
+
     },
 
     update: function () {
+
       this.game.physics.arcade.collide(this.player, this.layer);
+      this.game.physics.arcade.collide(this.bear1, this.layer);
+      this.game.physics.arcade.collide(this.bear1, this.player);
+      this.bear1.animations.play('move');
+
+      this.game.physics.arcade.collide(this.bear2, this.layer);
+      this.game.physics.arcade.collide(this.bear2, this.player);
+      this.bear2.animations.play('move');
+
+      this.game.physics.arcade.collide(this.bear3, this.layer);
+      this.game.physics.arcade.collide(this.bear3, this.player);
+      this.bear3.animations.play('move');
+
+      this.game.physics.arcade.collide(this.lobo1, this.layer);
+      this.game.physics.arcade.collide(this.lobo1, this.player);
+      this.lobo1.animations.play('move');
+
+      this.game.physics.arcade.collide(this.lobo2, this.layer);
+      this.game.physics.arcade.collide(this.lobo2, this.player);
+      this.lobo2.animations.play('move');
+
+      this.game.physics.arcade.collide(this.lobo3, this.layer);
+      this.game.physics.arcade.collide(this.lobo3, this.player);
+      this.lobo3.animations.play('move');
+
         this.player.body.velocity.x = 0;
 
-    if (this.cursors.left.isDown)
-    {
-        this.player.body.velocity.x = -150
-        this.player.frame = 0;
 
-        
+    if (this.game.physics.arcade.collide(this.player, this.bear1)) {
+      this.player.kill();
+    }
+    if (this.game.physics.arcade.collide(this.player, this.bear2 )) {
+      this.player.kill();
+    }
+    if (this.game.physics.arcade.collide(this.player, this.bear3 )) {
+      this.player.kill();
+    }
+    if (this.game.physics.arcade.collide(this.player, this.lobo1 )) {
+      this.player.kill();
+    }
+    if (this.game.physics.arcade.collide(this.player, this.lobo2 )) {
+      this.player.kill();
+    }
+    if (this.game.physics.arcade.collide(this.player, this.lobo3 )) {
+      this.player.kill();
+    }
+
+    if (this.cursors.left.isDown)
+    {   
+        this.player.body.velocity.x = -280;
+        this.player.play('left');   
     }
     else if (this.cursors.right.isDown)
     {
-        this.player.body.velocity.x = 150;
-        this.player.frame = 1;
+        this.player.body.velocity.x = 280;
+        this.player.play('right');
     }
    
     
     if (this.jumpButton.isDown && this.player.body.onFloor() && this.game.time.now > this.jumpTimer)
     {
-        this.player.body.velocity.y = -300;
+        this.player.body.velocity.y = -425;
         this.jumpTimer = this.game.time.now + 550;
     }
-    	/*if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-          this.player.body.velocity.x = -200;
-        }
-        else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-        	this.player.body.velocity.x = 200;
-        }
-        
-        if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) && this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-        	this.player.body.velocity.x = -200;
-            this.player.body.velocity.y = -200;
-        }
-        
-        if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) && this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-        	this.player.body.velocity.x = 200;
-            this.player.body.velocity.y = -200;
-        }
-        
-        if(this.game.input.keyboard.isDown(Phaser.Keyboard.UP)){
-        	this.player.body.velocity.y = -300;
-        }
-        /*
-     // Set a variable that is true when the player is touching the ground
-        var onTheGround = this.player.body.touching.down;
-        if (onTheGround) this.canDoubleJump = true;
 
-        if (this.upInputIsActive(5)) {
-            // Allow the player to adjust his jump height by holding the jump button
-            if (this.canDoubleJump) this.canVariableJump = true;
-
-            if (this.canDoubleJump || onTheGround) {
-                // Jump when the player is touching the ground or they can double jump
-                this.player.body.velocity.y = this.JUMP_SPEED;
-
-                // Disable ability to double jump if the player is jumping in the air
-                if (!onTheGround) this.canDoubleJump = false;
-            }
-        }
-
-        // Keep y velocity constant while the jump button is held for up to 150 ms
-        if (this.canVariableJump && this.upInputIsActive(150)) {
-            this.player.body.velocity.y = this.JUMP_SPEED;
-        }
-
-        // Don't allow variable jump height after the jump button is released
-        if (!this.upInputIsActive()) {
-            this.canVariableJump = false;
-        }
-*/
-        
+    // Dragon y dialogo (desaparecen)
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.ENTER)) {
+          this.dialogo.kill();
+          this.dragon.body.velocity.x = -400;
+          this.gameStart = true;
+      }        
         
     }
-    
+
 
   };
 

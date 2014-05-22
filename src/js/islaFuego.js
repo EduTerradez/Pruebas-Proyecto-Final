@@ -10,7 +10,7 @@
     create: function () {
        this.background = this.game.add.tileSprite(0, 0, 1500, 900, 'cavern');
 
-    this.SHOT_DELAY = 800; 
+    this.SHOT_DELAY = 1000; 
     this.BULLET_SPEED = 1100; 
     this.NUMBER_OF_BULLETS = 20;
     this.GRAVITY = 1100;

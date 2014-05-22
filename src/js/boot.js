@@ -31,6 +31,7 @@
 
   window['pruebitaswey'] = window['pruebitaswey'] || {};
   window['pruebitaswey'].Boot = Boot;
+  window['pruebitaswey'].Global = {started: false}
 
 }());
 
