@@ -51,14 +51,17 @@
         }
 
         if(this.counter === 2){
+          this.game.time.events.add(Phaser.Timer.SECOND * 1, this.out, this);
          this.dialogo.kill();
          this.dialogo = this.game.add.sprite(300, 300, 'd2');
         }
         else if(this.counter === 1){
+          this.game.time.events.add(Phaser.Timer.SECOND * 1, this.out, this);
           this.dialogo.kill()
           this.dialogo = this.game.add.sprite(300, 300, 'd3');
         }
         else if(this.counter === 0){
+          this.game.time.events.add(Phaser.Timer.SECOND * 1, this.out, this);
           this.dragon.kill();
           this.dialogo.kill();
           window.pruebitaswey.Global.started = true;
@@ -111,10 +114,17 @@
           this.game.state.start('fuego');
         },
         null, this);
+      this.game.physics.arcade.collide(this.player, this.island3,
+        function( player, island2 ){
+          this.game.state.start('agua');
+        },
+        null, this);
 
       
     },
+out : function(){
 
+},
 
 /*ender: function() {
   this.game.debug.body(this.island2);

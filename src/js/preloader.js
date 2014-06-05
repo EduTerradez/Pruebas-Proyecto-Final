@@ -31,13 +31,19 @@
       this.load.image('d1', 'assets/dialogos1.png')
       this.load.image('d2', 'assets/dialogos2.png')
       this.load.image('d3', 'assets/dialogos3.png')
+      this.load.image('dmarino', 'assets/dialogos_fondo_marino.png')
 
       this.load.spritesheet('personajeTierra', 'assets/personajeTierra.png', 53, 99);
+      this.load.spritesheet('nadador', 'assets/personaje_nadando.png', 125, 96);
       this.load.image('dTierra', 'assets/dialogoTierra.png');
       this.load.tilemap('Final', 'assets/tiledFinal.json', null, Phaser.Tilemap.TILED_JSON);
       this.load.tilemap('Tierra', 'assets/tiledTierra.json', null, Phaser.Tilemap.TILED_JSON);
       this.load.image('tierraTiles', 'assets/plataformasTierra.png');
       this.load.image('finalTiles', 'assets/plataformasFinal.png');
+
+      this.load.spritesheet('pez', 'assets/pez.png', 50, 52);
+      this.load.spritesheet('tiburon', 'assets/tiburon.png', 250, 104);
+      this.load.image('pezEspada', 'assets/pezEspada.png')
 
       this.load.image('background', 'assets/PORTADA.png');
       this.load.image('background2', 'assets/fondo_marino.png');

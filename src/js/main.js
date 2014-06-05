@@ -12,6 +12,7 @@ window.onload = function () {
   game.state.add('menu', ns.Menu);
   game.state.add('fuego', ns.Fuego);
   game.state.add('creditos', ns.Creditos);
+  game.state.add('agua', ns.Agua);
 
   game.state.start('boot');
 };
